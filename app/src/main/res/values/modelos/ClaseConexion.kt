@@ -1,4 +1,4 @@
-package modelos
+package values.modelos
 
 import java.sql.Connection
 import java.sql.DriverManager
