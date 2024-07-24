@@ -128,4 +128,3 @@ class Agregarpacientes : AppCompatActivity() {
             }
         }
     }
-}
