@@ -98,23 +98,6 @@
         app:layout_constraintVertical_bias="0.642" />
 
     <EditText
-        android:id="@+id/txtEnfermedad"
-        android:layout_width="161dp"
-        android:layout_height="51dp"
-        android:background="@drawable/barra_gris_campos"
-        android:ems="10"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Enfermedad"
-        android:inputType="text"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.817" />
-
-    <EditText
         android:id="@+id/txtApellido"
         android:layout_width="161dp"
         android:layout_height="51dp"
@@ -168,6 +151,21 @@
         app:layout_constraintVertical_bias="0.469" />
 
     <Button
+        android:id="@+id/btnAgregarpacientes"
+        android:layout_width="146dp"
+        android:layout_height="59dp"
+        android:backgroundTint="#1D659A"
+        android:fontFamily="@font/inter_bold"
+        android:text="Agregar paciente"
+        android:textSize="11.6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <Button
         android:id="@+id/btnverlistadopacientes"
         android:layout_width="146dp"
         android:layout_height="59dp"
@@ -176,27 +174,61 @@
         android:text="Ver pacientes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintVertical_bias="0.976" />
 
-    <EditText
-        android:id="@+id/txtMedicamento"
+    <ImageView
+        android:id="@+id/icregresar"
+        android:layout_width="68dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.201"
+        app:srcCompat="@drawable/ic_regresar" />
+
+    <Spinner
+        android:id="@+id/spEnfermedad"
         android:layout_width="161dp"
         android:layout_height="51dp"
         android:background="@drawable/barra_gris_campos"
-        android:ems="10"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Medicamento"
-        android:inputType="text"
-        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintVertical_bias="0.847" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Enfermedad"
+        android:textColor="#1D659A"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.781" />
+
+    <Spinner
+        android:id="@+id/spMedicamentos"
+        android:layout_width="161dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="180dp"
+        android:background="@drawable/barra_gris_campos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtHoramedicamento"
@@ -213,24 +245,7 @@
         app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555" />
-
-    <EditText
-        android:id="@+id/txtNumCama"
-        android:layout_width="161dp"
-        android:layout_height="51dp"
-        android:background="@drawable/barra_gris_campos"
-        android:ems="10"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="N° Cama"
-        android:inputType="text"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintVertical_bias="0.586" />
 
     <EditText
         android:id="@+id/txtNumHabitacion"
@@ -247,33 +262,38 @@
         app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+        app:layout_constraintVertical_bias="0.761" />
 
-    <Button
-        android:id="@+id/btnAgregarpacientes"
-        android:layout_width="146dp"
-        android:layout_height="59dp"
-        android:backgroundTint="#1D659A"
-        android:fontFamily="@font/inter_bold"
-        android:text="Agregar paciente"
-        android:textSize="11.6dp"
+    <EditText
+        android:id="@+id/txtNumCama"
+        android:layout_width="161dp"
+        android:layout_height="51dp"
+        android:background="@drawable/barra_gris_campos"
+        android:ems="10"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="N° Cama"
+        android:inputType="text"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintVertical_bias="0.673" />
 
-    <ImageView
-        android:id="@+id/icregresar"
-        android:layout_width="68dp"
-        android:layout_height="40dp"
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Medicamento"
+        android:textColor="#1D659A"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.201"
-        app:srcCompat="@drawable/ic_regresar" />
+        app:layout_constraintVertical_bias="0.448" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
