@@ -61,7 +61,7 @@ class Agregarpacientes : AppCompatActivity() {
             val listadoEnfermedades = mutableListOf<DataClassEnfermedades>()
 
             while (resultSet.next()){
-                val uuid = resultSet.getString("UUIDEnfermedad")
+                val uuid = resultSet.getString("UUIDEnfermedades")
                 val Enfermedad = resultSet.getString("Enfermedad")
                 val Enfermedadcompleta = DataClassEnfermedades(uuid, Enfermedad)
                 listadoEnfermedades.add(Enfermedadcompleta)
