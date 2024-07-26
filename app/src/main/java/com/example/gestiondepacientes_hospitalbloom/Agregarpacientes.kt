@@ -235,24 +235,23 @@ class Agregarpacientes : AppCompatActivity() {
 
                 val objConexion = ClaseConexion().cadenaConexion()
 
-                val Enfermedad = Obtenerenfermedades()
-                val Medicamento = Obtenermedicamentos()
+                val enfermedad = Obtenerenfermedades()
+                val medicamento = Obtenermedicamentos()
                 val habitacion = ObtenerHabitaciones()
                 val camas = ObtenerCamas()
 
 
-                val addPaciente = objConexion?.prepareStatement("insert into PACIENTES (UUIDPaciente, UUIDMedicamentos, UUIDEnfermedades, UUIDHabitacion, UUIDCama, Nombre, Apellido, Edad, Fecha_nacimiento, Hora_medicamento) values(?, ?, ?, ?, ?, ?, ?, ?, ?)")!!
+                val addPaciente = objConexion?.prepareStatement("insert into PACIENTES (UUIDPaciente, UUIDMedicamentos, UUIDEnfermedades, UUIDHabitacion, UUIDCama, Nombre, Apellido, Edad, Fecha_nacimiento, Hora_medicamento) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")!!
                 addPaciente.setString(1, UUID.randomUUID().toString())
-                addPaciente.setString(2, Medicamento[spMedicamentos.selectedItemPosition].UUIDMedicamentos)
-                addPaciente.setString(3, Enfermedad[spEnfermedad.selectedItemPosition].UUIDEnfermedades)
+                addPaciente.setString(2, medicamento[spMedicamentos.selectedItemPosition].UUIDMedicamentos)
+                addPaciente.setString(3, enfermedad[spEnfermedad.selectedItemPosition].UUIDEnfermedades)
                 addPaciente.setString(4, habitacion[spNumHabitacion.selectedItemPosition].UUIDHabitacion)
                 addPaciente.setString(5, camas[spNumCama.selectedItemPosition].UUIDCama)
-                addPaciente.setString(6, UUID.randomUUID().toString())
-                addPaciente.setString(7, txtNombrepaciente.text.toString())
-                addPaciente.setString(8, txtApellido.text.toString())
-                addPaciente.setString(9, txtedad.text.toString())
-                addPaciente.setString(10, txtFechanac.text.toString())
-                addPaciente.setString(11, txtHoramedicamento.text.toString())
+                addPaciente.setString(6, txtNombrepaciente.text.toString())
+                addPaciente.setString(7, txtApellido.text.toString())
+                addPaciente.setString(8, txtedad.text.toString())
+                addPaciente.setString(9, txtFechanac.text.toString())
+                addPaciente.setString(10, txtHoramedicamento.text.toString())
                 addPaciente.executeUpdate()
 
                 withContext(Dispatchers.Main){
