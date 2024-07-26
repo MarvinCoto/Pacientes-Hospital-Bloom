@@ -1,29 +1,25 @@
 package com.example.gestiondepacientes_hospitalbloom
 
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Intent
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
-import android.widget.TextView
-import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isEmpty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
+import modelo.DataClassCamas
+import modelo.DataClassHabitaciones
 import modelo.DataClassEnfermedades
 import modelo.DataClassMedicamentos
 import java.util.UUID
@@ -46,8 +42,8 @@ class Agregarpacientes : AppCompatActivity() {
         val spEnfermedad = findViewById<Spinner>(R.id.spEnfermedad)
         val spMedicamentos = findViewById<Spinner>(R.id.spMedicamentos)
         val txtHoramedicamento = findViewById<EditText>(R.id.txtHoramedicamento)
-        val txtNumCama = findViewById<EditText>(R.id.txtNumCama)
-        val txtNumHabitacion = findViewById<EditText>(R.id.txtNumHabitacion)
+        val spNumCama = findViewById<Spinner>(R.id.spNumCama)
+        val spNumHabitacion = findViewById<Spinner>(R.id.spNumHabitacion)
         val btnAgregarpacientes = findViewById<Button>(R.id.btnAgregarpacientes)
         val btnverlistadopacientes = findViewById<Button>(R.id.btnverlistadopacientes)
         val icregresar = findViewById<ImageView>(R.id.icregresar)
@@ -106,6 +102,62 @@ class Agregarpacientes : AppCompatActivity() {
             }
         }
 
+        fun ObtenerHabitaciones (): List<DataClassHabitaciones> {
+
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            val statement = objConexion?.createStatement()
+            val resultSet = statement?.executeQuery("SELECT * FROM HABITACIONES")!!
+
+            val listadoHabitaciones = mutableListOf<DataClassHabitaciones>()
+
+            while (resultSet.next()){
+                val uuid = resultSet.getString("UUIDHabitacion")
+                val habitacion = resultSet.getString("N_Habitacion")
+                val habitacionCompleta = DataClassHabitaciones(uuid, habitacion)
+                listadoHabitaciones.add(habitacionCompleta)
+            }
+            return listadoHabitaciones
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val listadohabitaciones = ObtenerHabitaciones()
+            val habitacion = listadohabitaciones.map { it.N_Habitacion }
+
+            withContext(Dispatchers.Main) {
+                val miAdaptadorHabitacion = ArrayAdapter(this@Agregarpacientes, android.R.layout.simple_spinner_dropdown_item, habitacion)
+                spNumHabitacion.adapter = miAdaptadorHabitacion
+            }
+        }
+
+        fun ObtenerCamas (): List<DataClassCamas> {
+
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            val statement = objConexion?.createStatement()
+            val resultSet = statement?.executeQuery("SELECT * FROM CAMAS")!!
+
+            val listadoCamas = mutableListOf<DataClassCamas>()
+
+            while (resultSet.next()){
+                val uuid = resultSet.getString("UUIDCama")
+                val cama = resultSet.getString("N_Cama")
+                val camaCompleta = DataClassCamas(uuid, cama)
+                listadoCamas.add(camaCompleta)
+            }
+            return listadoCamas
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val listadoCamas = ObtenerCamas()
+            val cama = listadoCamas.map { it.N_Cama }
+
+            withContext(Dispatchers.Main) {
+                val miAdaptadorCama = ArrayAdapter(this@Agregarpacientes, android.R.layout.simple_spinner_dropdown_item, cama)
+                spNumCama.adapter = miAdaptadorCama
+            }
+        }
+
         txtFechanac.setOnClickListener {
             val calendario = java.util.Calendar.getInstance()
             val anio = calendario.get(java.util.Calendar.YEAR)
@@ -138,8 +190,7 @@ class Agregarpacientes : AppCompatActivity() {
             val Edad = txtedad.text.toString()
             val FechaNac = txtFechanac.text.toString()
             val Horamedicamento = txtHoramedicamento.text.toString()
-            val NumCama = txtNumCama.text.toString()
-            val NumHabitacion = txtNumHabitacion.text.toString()
+
 
             var hayErrores = false
 
@@ -178,19 +229,7 @@ class Agregarpacientes : AppCompatActivity() {
                 txtHoramedicamento.error = null
             }
 
-            if (NumCama.isEmpty()) {
-                txtNumCama.error = "El número de cama es obligatorio"
-                hayErrores = true
-            } else {
-                txtNumCama.error = null
-            }
 
-            if (NumHabitacion.isEmpty()) {
-                txtNumHabitacion.error = "El número de habitación es obligatorio"
-                hayErrores = true
-            } else {
-                txtNumHabitacion.error = null
-            }
 
             CoroutineScope(Dispatchers.IO).launch {
 
@@ -198,17 +237,22 @@ class Agregarpacientes : AppCompatActivity() {
 
                 val enfermedad = Obtenerenfermedades()
                 val medicamento = Obtenermedicamentos()
+                val habitacion = ObtenerHabitaciones()
+                val camas = ObtenerCamas()
 
-                val addPaciente = objConexion?.prepareStatement("insert into PACIENTES (UUIDPaciente, UUIDMedicamentos, UUIDEnfermedades, UUIDAtencion, Nombre, Apellido, Edad, Fecha_nacimiento, Hora_medicamento) values(?, ?, ?, ?, ?, ?, ?, ?, ?)")!!
+
+                val addPaciente = objConexion?.prepareStatement("insert into PACIENTES (UUIDPaciente, UUIDMedicamentos, UUIDEnfermedades, UUIDHabitacion, UUIDCama, Nombre, Apellido, Edad, Fecha_nacimiento, Hora_medicamento) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")!!
                 addPaciente.setString(1, UUID.randomUUID().toString())
                 addPaciente.setString(2, medicamento[spMedicamentos.selectedItemPosition].UUIDMedicamentos)
                 addPaciente.setString(3, enfermedad[spEnfermedad.selectedItemPosition].UUIDEnfermedades)
-                addPaciente.setString(4, UUID.randomUUID().toString())
-                addPaciente.setString(5, txtNombrepaciente.text.toString())
-                addPaciente.setString(6, txtApellido.text.toString())
-                addPaciente.setString(7, txtedad.text.toString())
-                addPaciente.setString(8, txtFechanac.text.toString())
-                addPaciente.setString(9, txtHoramedicamento.text.toString())
+                addPaciente.setString(4, habitacion[spNumHabitacion.selectedItemPosition].UUIDHabitacion)
+                addPaciente.setString(5, camas[spNumCama.selectedItemPosition].UUIDCama)
+                addPaciente.setString(6, txtNombrepaciente.text.toString())
+                addPaciente.setString(7, txtApellido.text.toString())
+                addPaciente.setString(8, txtedad.text.toString())
+                addPaciente.setString(9, txtFechanac.text.toString())
+                addPaciente.setString(10, txtHoramedicamento.text.toString())
+
                 addPaciente.executeUpdate()
 
                 withContext(Dispatchers.Main){
