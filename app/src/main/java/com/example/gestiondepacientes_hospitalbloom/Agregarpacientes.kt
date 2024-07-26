@@ -137,8 +137,6 @@ class Agregarpacientes : AppCompatActivity() {
             val Apellido = txtApellido.text.toString()
             val Edad = txtedad.text.toString()
             val FechaNac = txtFechanac.text.toString()
-            val Enfermedad = spEnfermedad.selectedItem.toString()
-            val Medicamento = spMedicamentos.selectedItem.toString()
             val Horamedicamento = txtHoramedicamento.text.toString()
             val NumCama = txtNumCama.text.toString()
             val NumHabitacion = txtNumHabitacion.text.toString()
@@ -173,26 +171,6 @@ class Agregarpacientes : AppCompatActivity() {
                 txtFechanac.error = null
             }
 
-            if (Enfermedad.isEmpty()) {
-                val errorText = spEnfermedad.selectedView as TextView
-                errorText.error = "La enfermedad es obligatoria"
-                errorText.requestFocus()
-                hayErrores = true
-            } else {
-                val errorText = spEnfermedad.selectedView as TextView
-                errorText.error = null
-            }
-
-            if (Medicamento.isEmpty()) {
-                val errorText = spMedicamentos.selectedView as TextView
-                errorText.error = "El medicamento es obligatorio"
-                errorText.requestFocus()
-                hayErrores = true
-            } else {
-                val errorText = spMedicamentos.selectedView as TextView
-                errorText.error = null
-            }
-
             if (Horamedicamento.isEmpty()) {
                 txtHoramedicamento.error = "La hora del medicamento es obligatoria"
                 hayErrores = true
@@ -225,11 +203,12 @@ class Agregarpacientes : AppCompatActivity() {
                 addPaciente.setString(1, UUID.randomUUID().toString())
                 addPaciente.setString(2, Medicamento[spMedicamentos.selectedItemPosition].UUIDMedicamentos)
                 addPaciente.setString(3, Enfermedad[spEnfermedad.selectedItemPosition].UUIDEnfermedades)
-                /*addPaciente.setString(4, )*/
+                addPaciente.setString(4, UUID.randomUUID().toString())
                 addPaciente.setString(5, txtNombrepaciente.text.toString())
                 addPaciente.setString(6, txtApellido.text.toString())
                 addPaciente.setString(7, txtedad.text.toString())
                 addPaciente.setString(8, txtFechanac.text.toString())
+                addPaciente.setString(9, txtHoramedicamento.text.toString())
                 addPaciente.executeUpdate()
 
                 withContext(Dispatchers.Main){
