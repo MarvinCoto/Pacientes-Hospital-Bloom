@@ -98,7 +98,7 @@ class Agregarpacientes : AppCompatActivity() {
 
             withContext(Dispatchers.Main)  {
                 val miAdaptadormedicamento = ArrayAdapter(this@Agregarpacientes, android.R.layout.simple_spinner_dropdown_item, nombremedicamento)
-                spEnfermedad.adapter = miAdaptadormedicamento
+                spMedicamentos.adapter = miAdaptadormedicamento
             }
         }
 

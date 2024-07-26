@@ -32,7 +32,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/icregresaragregarpacientes"
         android:layout_width="86dp"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/icregresaragregarpacientes"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,6 +83,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="69dp"
             android:layout_marginBottom="9dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Nombre paciente"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -94,13 +95,15 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Editar"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.579"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="206dp" />
+            app:layout_constraintVertical_bias="0.526" />
 
         <TextView
             android:id="@+id/textView4"
@@ -110,6 +113,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="9dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Eliminar "
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"

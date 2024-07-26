@@ -12,7 +12,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="101dp"
-    android:backgroundTint="#E183DEE9"
+    android:backgroundTint="#C8ECFF"
     tools:context=".activity_card_pacientes">
 
     <LinearLayout
@@ -26,6 +26,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/inter_semibold"
             android:text="TextView"
             android:textColor="#02A5BA"
             android:textSize="34sp" />
