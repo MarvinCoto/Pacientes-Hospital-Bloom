@@ -196,13 +196,13 @@ class Agregarpacientes : AppCompatActivity() {
 
                 val objConexion = ClaseConexion().cadenaConexion()
 
-                val Enfermedad = Obtenerenfermedades()
-                val Medicamento = Obtenermedicamentos()
+                val enfermedad = Obtenerenfermedades()
+                val medicamento = Obtenermedicamentos()
 
                 val addPaciente = objConexion?.prepareStatement("insert into PACIENTES (UUIDPaciente, UUIDMedicamentos, UUIDEnfermedades, UUIDAtencion, Nombre, Apellido, Edad, Fecha_nacimiento, Hora_medicamento) values(?, ?, ?, ?, ?, ?, ?, ?, ?)")!!
                 addPaciente.setString(1, UUID.randomUUID().toString())
-                addPaciente.setString(2, Medicamento[spMedicamentos.selectedItemPosition].UUIDMedicamentos)
-                addPaciente.setString(3, Enfermedad[spEnfermedad.selectedItemPosition].UUIDEnfermedades)
+                addPaciente.setString(2, medicamento[spMedicamentos.selectedItemPosition].UUIDMedicamentos)
+                addPaciente.setString(3, enfermedad[spEnfermedad.selectedItemPosition].UUIDEnfermedades)
                 addPaciente.setString(4, UUID.randomUUID().toString())
                 addPaciente.setString(5, txtNombrepaciente.text.toString())
                 addPaciente.setString(6, txtApellido.text.toString())
