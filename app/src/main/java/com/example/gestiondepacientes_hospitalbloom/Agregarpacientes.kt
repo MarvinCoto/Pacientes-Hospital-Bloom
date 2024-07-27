@@ -1,6 +1,7 @@
 package com.example.gestiondepacientes_hospitalbloom
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -22,6 +23,7 @@ import modelo.DataClassCamas
 import modelo.DataClassHabitaciones
 import modelo.DataClassEnfermedades
 import modelo.DataClassMedicamentos
+import java.util.Calendar
 import java.util.UUID
 
 class Agregarpacientes : AppCompatActivity() {
@@ -183,13 +185,34 @@ class Agregarpacientes : AppCompatActivity() {
             datePickerDialog.show()
         }
 
+        txtHoramedicamento.setOnClickListener {
+
+                val calendar = Calendar.getInstance()
+                val hour = calendar.get(Calendar.HOUR_OF_DAY)
+                val minute = calendar.get(Calendar.MINUTE)
+
+                // Crear el TimePickerDialog
+                val timePickerDialog = TimePickerDialog(
+                    this,
+                    { _, selectedHour, selectedMinute ->
+                        val time = String.format("%02d:%02d", selectedHour, selectedMinute)
+                        txtHoramedicamento.setText(time)
+                    },
+                    hour,
+                    minute,
+                    true
+                )
+
+                timePickerDialog.show()
+        }
+
         
         btnAgregarpacientes.setOnClickListener {
             val Nombre = txtNombrepaciente.text.toString()
             val Apellido = txtApellido.text.toString()
             val Edad = txtedad.text.toString()
             val FechaNac = txtFechanac.text.toString()
-            val Horamedicamento = txtHoramedicamento.text.toString()
+            val Horamedicamento = txtFechanac.text.toString()
 
 
             var hayErrores = false
@@ -229,8 +252,11 @@ class Agregarpacientes : AppCompatActivity() {
                 txtHoramedicamento.error = null
             }
 
-
-
+            if (hayErrores) {
+                Toast.makeText(this@Agregarpacientes, "No se puede agregar un paciente porque hay datos faltantes", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
             CoroutineScope(Dispatchers.IO).launch {
 
                 val objConexion = ClaseConexion().cadenaConexion()
