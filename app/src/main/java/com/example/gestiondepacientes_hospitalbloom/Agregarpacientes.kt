@@ -232,7 +232,7 @@ class Agregarpacientes : AppCompatActivity() {
             }
 
             if (!Edad.matches(Regex("[0-9]"))) {
-                txtedad.error = "La edad debe ser de tipo número, es obligatoria"
+                txtedad.error = "La edad es obligatoria"
                 hayErrores = true
             } else {
                 txtedad.error = null
@@ -252,10 +252,6 @@ class Agregarpacientes : AppCompatActivity() {
                 txtHoramedicamento.error = null
             }
 
-            if (hayErrores) {
-                Toast.makeText(this@Agregarpacientes, "No se puede agregar un paciente porque hay datos faltantes", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
             
             CoroutineScope(Dispatchers.IO).launch {
 
@@ -289,6 +285,7 @@ class Agregarpacientes : AppCompatActivity() {
                     txtHoramedicamento.setText("")
                     Toast.makeText(this@Agregarpacientes, "¡Se ha agregado el paciente!", Toast.LENGTH_SHORT).show()
                 }
+                
 
             }
 
