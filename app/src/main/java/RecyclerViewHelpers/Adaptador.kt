@@ -13,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import modelo.DataClassPacientes
 
@@ -166,6 +167,16 @@ class Adaptador (var Datos: List<DataClassPacientes>): RecyclerView.Adapter<View
         notifyDataSetChanged()
     }
 
+    //Actualizar pantalla al editar
+    fun actualizarPantalla (uuid: String, nuevoNombre: String) {
+
+        val index = Datos.indexOfFirst { it.uuidPaciente == uuid }
+
+        Datos[index].nombre = nuevoNombre
+        notifyDataSetChanged()
+
+    }
+
     //Funcion para editar datos
     fun editarPaciente (uuidMedicamentos: String, uuidEnfermedades: String, uuidHabitacon: String, uuidCama: String, nombre: String, apellido: String, edad: Int, fecha_nacimiento: String, hora_medicamento: String, uuidPaciente: String,) {
         //Creomos una corrutina
@@ -190,7 +201,13 @@ class Adaptador (var Datos: List<DataClassPacientes>): RecyclerView.Adapter<View
 
             val commit = objConexion.prepareStatement("commit")
             commit.executeUpdate()
+
+            withContext(Dispatchers.Main){
+                actualizarPantalla(uuidPaciente, nombre)
+            }
         }
+
+
     }
 
 
