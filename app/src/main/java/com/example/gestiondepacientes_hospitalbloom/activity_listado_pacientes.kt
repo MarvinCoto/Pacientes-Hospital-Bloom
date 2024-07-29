@@ -57,7 +57,7 @@ class activity_listado_pacientes : AppCompatActivity() {
                 val uuidCama = resultSet.getString("UUIDCama")
                 val nombre = resultSet.getString("Nombre")
                 val apellido = resultSet.getString("Apellido")
-                val edad = resultSet.getString("Edad")
+                val edad = resultSet.getInt("Edad")
                 val fecha_nacimiento = resultSet.getString("Fecha_nacimiento")
                 val hora_medicamento = resultSet.getString("Hora_medicamento")
 

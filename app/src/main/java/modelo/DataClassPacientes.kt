@@ -6,9 +6,9 @@ data class DataClassPacientes(
     val uuidEnfermedades: String,
     val uuidHabitacon: String,
     val uuidCama: String,
-    val nombre: String,
+    var nombre: String,
     val apellido: String,
-    val edad: String,
+    val edad: Int,
     val fecha_nacimiento: String,
     val hora_medicamento: String
 )
