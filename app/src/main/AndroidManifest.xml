@@ -15,6 +15,9 @@
         android:theme="@style/Theme.GestionDePacientesHospitalBloom"
         tools:targetApi="31">
         <activity
+            android:name=".activity_detalle_pacientes"
+            android:exported="false" />
+        <activity
             android:name=".Agregarpacientes"
             android:exported="false" />
         <activity
@@ -26,11 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity_listado_pacientes"
             android:exported="false" />
-
         <activity
             android:name=".activity_card_pacientes"
             android:exported="false" />
