@@ -9,11 +9,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="426dp"
-        android:layout_height="284dp"
+        android:layout_width="466dp"
+        android:layout_height="289dp"
         android:layout_marginStart="3dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/icRegresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.611"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="428dp"
+        android:layout_width="500dp"
         android:layout_height="35dp"
         android:background="@drawable/barra_azul"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
@@ -35,7 +35,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="426dp"
+        android:layout_width="500dp"
         android:layout_height="32dp"
         android:layout_marginTop="213dp"
         android:background="@drawable/barra_azul"
@@ -58,12 +58,12 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.769"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/icRegresar"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.137" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/icRegresar"
         android:layout_width="39dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
@@ -76,10 +76,11 @@
         android:id="@+id/constraintLayout5"
         android:layout_width="365dp"
         android:layout_height="347dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/rectangulo_detalles"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -88,7 +89,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="81dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="19dp"
             android:layout_marginBottom="27dp"
             android:fontFamily="@font/inter_bold"
             android:text="Nombre"
@@ -175,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="35dp"
-            android:layout_marginBottom="11dp"
+            android:layout_marginBottom="12dp"
             android:fontFamily="@font/inter_bold"
             android:text="Enfermedad"
             android:textSize="16sp"
@@ -210,7 +210,7 @@
             android:id="@+id/txtFechaNacimiento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="63dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="126dp"
             android:layout_marginBottom="10dp"
             android:text="TextView"
@@ -222,7 +222,7 @@
             android:id="@+id/txtEdadPaciente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="125dp"
             android:layout_marginBottom="10dp"
             android:text="TextView"
@@ -234,7 +234,7 @@
             android:id="@+id/txtHabitacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="125dp"
             android:layout_marginBottom="13dp"
             android:text="TextView"
@@ -246,7 +246,7 @@
             android:id="@+id/txtCama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="63dp"
+            android:layout_marginStart="22dp"
             android:layout_marginEnd="244dp"
             android:layout_marginBottom="31dp"
             android:text="TextView"

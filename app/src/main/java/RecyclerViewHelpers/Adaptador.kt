@@ -1,6 +1,7 @@
 package RecyclerViewHelpers
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintSet.Layout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestiondepacientes_hospitalbloom.R
+import com.example.gestiondepacientes_hospitalbloom.activity_detalle_pacientes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -128,6 +130,26 @@ class Adaptador (var Datos: List<DataClassPacientes>): RecyclerView.Adapter<View
 
             val dialog = builder.create()
             dialog.show()
+        }
+
+        //Ver todos los datos dandole click a la card
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+
+            //Cambiar de pantalla a la pantalla de detalle
+            val pantallaDetalle = Intent(context, activity_detalle_pacientes::class.java)
+            //Enviar a la otra pantalla todos mis datos
+            pantallaDetalle.putExtra("UUIDPaciente", item.uuidPaciente)
+            pantallaDetalle.putExtra("UUIDMedicamentos", item.uuidMedicamentos)
+            pantallaDetalle.putExtra("UUIDEnfermedades", item.uuidEnfermedades)
+            pantallaDetalle.putExtra("UUIDHabitacion", item.uuidHabitacon)
+            pantallaDetalle.putExtra("UUIDCama", item.uuidCama)
+            pantallaDetalle.putExtra("Nombre", item.nombre)
+            pantallaDetalle.putExtra("Apellido", item.apellido)
+            pantallaDetalle.putExtra("Edad", item.edad)
+            pantallaDetalle.putExtra("Fecha_nacimiento", item.fecha_nacimiento)
+            pantallaDetalle.putExtra("Hora_medicamento", item.hora_medicamento)
+            context.startActivity(pantallaDetalle)
         }
 
     }
