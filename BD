@@ -104,3 +104,6 @@ INSERT INTO CAMAS (UUIDCama, N_Cama) VALUES (10, 'Cama N°10');
 DROP TABLE CAMAS;
 
 SELECT * FROM CAMAS;
+
+//Ejecutar el commit después de haber creado e insertado todo
+COMMIT
